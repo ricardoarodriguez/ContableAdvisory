@@ -1,0 +1,7 @@
+
+# Ignora los archivos relacionados a API keys
+.env
+
+
+# Ignora los archivos relacionados a API keys
+env
