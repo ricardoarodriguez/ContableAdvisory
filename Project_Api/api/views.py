@@ -23,6 +23,6 @@ class ClienteView(View):
     def post(self, request):
         jd = json.loads(request.body)
         print(jd)
-        Cliente.objects.create(documento=jd['documento'],tipo_documento=jd['tipo_documento'],nombre=jd['nombre'],genero=jd['genero'])
+        Cliente.objects.create(documento=jd['documento'],tipo_documento=jd['tipo_documento'],nombre=jd['nombre'],genero=jd['genero'],acceptance_tm=jd['acceptance_tm'],email=jd['email'])
         datos = {'message' : "Success"}
         return JsonResponse(datos)
