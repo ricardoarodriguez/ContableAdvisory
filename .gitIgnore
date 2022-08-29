@@ -4,4 +4,6 @@
 
 
 # Ignora los archivos relacionados a API keys
-env
+env 
+
+.Project_Api/Project_Api/__pycache__
