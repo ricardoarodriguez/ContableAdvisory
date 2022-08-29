@@ -1,7 +1,8 @@
-
 # Ignora los archivos relacionados a API keys
-.env
+env 
 
+# Ignora los archivos generados por la cache
 
-# Ignora los archivos relacionados a API keys
-env
+**/Project_Api/Project_Api/__pycache__
+
+*.pyc
