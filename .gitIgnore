@@ -1,9 +1,6 @@
-
-# Ignora los archivos relacionados a API keys
-.env
-
-
 # Ignora los archivos relacionados a API keys
 env 
 
-.Project_Api/Project_Api/__pycache__
+# Ignora los archivos generados por la cache
+
+Project_Api/Project_Api/__pycache__
