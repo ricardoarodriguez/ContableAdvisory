@@ -19,5 +19,6 @@ from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('clientes/', views.ClienteView.as_view(), name='cliente_list')  
+    path('clientes/', views.ClienteView.as_view(), name='cliente_list'), 
+    path('clientes/getClient/<int:id>/', views.ClienteView.getClient, name='getClient')
 ]

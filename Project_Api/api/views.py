@@ -4,6 +4,7 @@ from .models import Cliente
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt 
+from django.core.serializers.json import DjangoJSONEncoder
 import json
 # Create your views here.
 class ClienteView(View):
@@ -22,7 +23,39 @@ class ClienteView(View):
     
     def post(self, request):
         jd = json.loads(request.body)
-        print(jd)
-        Cliente.objects.create(documento=jd['documento'],tipo_documento=jd['tipo_documento'],nombre=jd['nombre'],genero=jd['genero'],acceptance_tm=jd['acceptance_tm'],email=jd['email'])
+        Cliente.objects.create(
+                                documento=jd['documento']
+                                ,tipo_documento=jd['tipo_documento']
+                                ,nombre=jd['nombre']
+                                ,genero=jd['genero']
+                                ,email=jd['email']
+                            )
         datos = {'message' : "Success"}
+        return JsonResponse(datos)
+    
+    def put(self, request):
+        jd = json.loads(request.body)
+        print(jd)
+        Cliente.objects.filter( pk = jd['id'] ).update(
+                                documento=jd['documento']
+                                ,tipo_documento=jd['tipo_documento']
+                                ,nombre=jd['nombre']
+                                ,genero=jd['genero']
+                                ,email=jd['email']
+                            )
+        datos = {'message' : "Datos Actualizados Correctamente"}
+        return JsonResponse(datos)
+    
+    def delete(self, request):
+        jd = json.loads(request.body)
+        Cliente.objects.filter(pk=jd['id']).delete()
+        datos = {'message' : 'Cliente Eliminado'}
+        return JsonResponse(datos)
+
+    def getClient(self, id):
+        cliente = list(Cliente.objects.filter( id = id ).values())
+        if len(cliente) > 0:
+            datos = { 'message': 'Success', 'cliente': cliente} 
+        else:
+            datos = {'message': 'Cliente no encontrado'}
         return JsonResponse(datos)
