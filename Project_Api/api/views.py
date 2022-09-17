@@ -1,10 +1,20 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework import permissions
+from .models import Cliente
+from .serializers import ClienteSerializer
+
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+'''from django.shortcuts import render
 from django.views import View
 from .models import Cliente
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt 
-from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth.models import User, Group
 import json
 # Create your views here.
 class ClienteView(View):
@@ -59,3 +69,15 @@ class ClienteView(View):
         else:
             datos = {'message': 'Cliente no encontrado'}
         return JsonResponse(datos)
+
+    def post(self, request):
+        jd = json.loads(request.body)
+        Cliente.objects.create(
+                                documento=jd['documento']
+                                ,tipo_documento=jd['tipo_documento']
+                                ,nombre=jd['nombre']
+                                ,genero=jd['genero']
+                                ,email=jd['email']
+                            )
+        datos = {'message' : "Success"}
+        return JsonResponse(datos)'''
