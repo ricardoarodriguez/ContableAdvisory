@@ -3,8 +3,8 @@ env
 
 # Ignora los archivos generados por la cache
 
-**/Project_Api/Project_Api/__pycache__
-
-**/Project_Api/api/__pycache__
+**/Project_Api/api/migrations/__pycache__
 
 *.pyc
+
+*.sqlite3
