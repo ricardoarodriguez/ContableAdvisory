@@ -1,31 +1,3 @@
-Skip to content
-Product
-Solutions
-Open Source
-Pricing
-Search
-Sign in
-Sign up
-veryacademy
-/
-YT-Django-DRF-Simple-Blog-Series-JWT-Part-3
-Public
-Code
-Issues
-1
-Pull requests
-Actions
-Projects
-Security
-Insights
-YT-Django-DRF-Simple-Blog-Series-JWT-Part-3/django/users/views.py /
-@veryacademy
-veryacademy nc
-Latest commit a09743a on 15 Sep 2020
- History
- 0 contributors
-34 lines (28 sloc)  1.21 KB
-
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
 from rest_framework.response import Response
@@ -40,6 +12,8 @@ class CustomUserCreate(APIView):
 
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
+        print(request.data)
+        print(serializer)
         if serializer.is_valid():
             user = serializer.save()
             if user:

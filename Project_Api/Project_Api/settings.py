@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ddh6jf7hha3pbs',
+#         'USER': 'hzunkoigouwgpl',
+#         'PASSWORD':'1db2247b620fa608ebd16a36b1de099320e802de5d60d09c667feb9bad7d0ea0',
+#         'HOST':'ec2-35-170-146-54.compute-1.amazonaws.com',
+#         'PORT':'5432',
+#     }
+# }
 
 
 # Password validation
@@ -161,3 +173,5 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
+AUTH_USER_MODEL = "user.NewUser"
