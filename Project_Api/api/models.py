@@ -5,7 +5,7 @@ from django.conf import settings
 
 # Create your models here.
 class Cliente(models.Model):
-    documento = models.IntegerField()
+    documento = models.CharField(max_length=20, null=True)
     tipo_documento = models.CharField(max_length=20, null=True)
     nombre = models.CharField(max_length=200, verbose_name="Nombre del Cliente")
     genero = models.CharField(max_length=10, null=True)
@@ -67,3 +67,43 @@ class Persona(models.Model):
     acceptance_tm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+
+class CIIU(models.Model):
+    codigo = models.IntegerField()
+    nombre = models.CharField(max_length=200, null=True)
+    estado = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)    
+    update_at = models.DateTimeField(auto_now=True, null=True)
+
+class Tributos(models.Model):
+    nombre = models.CharField(max_length=200, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    estado = models.BooleanField(default=True)
+
+class Responsabilidad_Fiscal(models.Model):
+    nombre = models.CharField(max_length=200, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    estado = models.BooleanField(default=True)
+
+class Estado_Servicio(models.Model):
+    nombre = models.CharField(max_length=200, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    estado = models.BooleanField(default=True)
+
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=200, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    estado = models.BooleanField(default=True)
+
+class Gestion_Servicio(models.Model):
+    observacion = models.CharField(max_length=1000, null=True)
+    id_servicio = models.IntegerField()
+    id_estado_servicio = models.IntegerField()
+    estado = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Detalle_Servicio(models.Model):
+    id_cliente = models.IntegerField()
+    id_servicio = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    estado = models.BooleanField(default=True)
