@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^+dkv2#&xn!m+8(xl$)hvc^u15wn()536!n8drbwc$9euu8zxu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -85,23 +85,23 @@ WSGI_APPLICATION = 'Project_Api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'ddh6jf7hha3pbs',
-#         'USER': 'hzunkoigouwgpl',
-#         'PASSWORD':'1db2247b620fa608ebd16a36b1de099320e802de5d60d09c667feb9bad7d0ea0',
-#         'HOST':'ec2-35-170-146-54.compute-1.amazonaws.com',
-#         'PORT':'5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db8n5qciivarkh',
+        'USER': 'lwjfpcandhrwmt',
+        'PASSWORD':'cd2c798f9476e0f3621295875c549a6b5c711532e1569ed7f6631e36b6ecbe01',
+        'HOST':'ec2-35-173-91-114.compute-1.amazonaws.com',
+        'PORT':'5432',
+    }
+}
 
 
 # Password validation
@@ -187,4 +187,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+AUTH_USER_MODEL = "user.NewUser"
