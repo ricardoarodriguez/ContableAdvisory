@@ -147,7 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # componentes para permitir conexión con frontend
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
+    *,
 ]
 
 REST_FRAMEWORK = {
