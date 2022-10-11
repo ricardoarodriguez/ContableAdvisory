@@ -1,1 +1,1 @@
-web: gunicorn ContableAdvisory.wsgi --log-file --workers 3
+web: gunicorn ContableAdvisory.wsgi --log-file -
