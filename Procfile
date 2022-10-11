@@ -1,0 +1,1 @@
+web: gunicorn ContableAdvisory.wsgi --log-file -
