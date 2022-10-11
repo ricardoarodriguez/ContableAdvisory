@@ -18,14 +18,6 @@ router.register(r'estadoServicios', views.EstadoServicioViewSet)
 router.register(r'gestionServicios', views.GestionServicioViewSet)
 router.register(r'detalleServicio', views.DetalleServicioViewSet)
 
-router.register(r'ciiu/<int:pk>', views.ClienteViewSet)
-router.register(r'cliente/<int:pk>', views.ClienteViewSet)
-router.register(r'tributos/<int:pk>', views.ClienteViewSet)
-router.register(r'responsabilidad/<int:pk>', views.ClienteViewSet)
-router.register(r'estadoServicios/<int:pk>', views.ClienteViewSet)
-router.register(r'gestionServicios/<int:pk>', views.ClienteViewSet)
-router.register(r'detalleServicio/<int:pk>', views.ClienteViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include(router.urls)),
