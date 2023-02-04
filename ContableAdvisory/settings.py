@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'ContableAdvisory.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db8n5qciivarkh',
-        'USER': 'lwjfpcandhrwmt',
-        'PASSWORD':'cd2c798f9476e0f3621295875c549a6b5c711532e1569ed7f6631e36b6ecbe01',
-        'HOST':'ec2-35-173-91-114.compute-1.amazonaws.com',
+        'NAME': 'd3m5if89rgb93q',
+        'USER': 'fjfocpljkblffp',
+        'PASSWORD':'a75261801bf83b02373fff5c8a2a544e59e7dc660ccb93dcf03b4b55e736bcc1',
+        'HOST':'ec2-3-229-161-70.compute-1.amazonaws.com',
         'PORT':'5432',
     }
 }
