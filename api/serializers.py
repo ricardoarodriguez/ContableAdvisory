@@ -5,7 +5,7 @@ from .models import *
 class ClienteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Cliente
-        fields = [ 'url','id','documento','tipo_documento','nombre','genero','email','acceptance_tm','created_at','update_at']
+        fields = [ 'url','id','documento','tipo_documento','nombre','genero','email','acceptance_tm','created_at','update_at', 'telefono','describe']
 
 class CIIUSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
