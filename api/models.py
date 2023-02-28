@@ -13,8 +13,8 @@ class Cliente(models.Model):
     acceptance_tm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    telefono = models.CharField(max_length=10)
-    describe = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=10, null=True)
+    describe = models.CharField(max_length=255, null=True)
 
 class Tipo_tramite (models.Model):    
     descripcion_tipo = models.CharField(max_length=200,null=True,blank=True)
