@@ -238,8 +238,8 @@ class DetalleServicioViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
 class BlogContableViewSet(viewsets.ModelViewSet):
-    queryset = Cliente.objects.all()
-    serializer_class = ClienteSerializer
+    queryset = Blog_Contable.objects.all()
+    serializer_class = BlogContableSerializer
     #permission_classes = [permissions.IsAuthenticated]
     
     def get(self, pk):
