@@ -237,3 +237,36 @@ class DetalleServicioViewSet(viewsets.ModelViewSet):
         detalle.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
+class BlogContableViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, pk):
+        try:
+            queryset = Blog_Contable.objects.filter(pk=pk)
+            return queryset
+        except Blog_Contable.DoesNotExist:
+            raise Http404
+
+    def post(self, request, pk, format=None):
+        blogContable = BlogContableSerializer(data=request.data)
+        if blogContable.is_valid():
+            blogContable.save()
+            return Response(blogContable.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk, format=None):
+        blogContable = self.get(pk)
+        serializer = BlogContableSerializer(data=request.data)
+        if blogContable.is_valid():
+            blogContable.save()
+            return Response(blogContable.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk, format=None):
+        blogContable = Blog_Contable.objects.filter(pk=pk)
+        blogContable.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT) 

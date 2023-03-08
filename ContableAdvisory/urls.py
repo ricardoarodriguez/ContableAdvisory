@@ -17,6 +17,7 @@ router.register(r'responsabilidad', views.ResponsabilidadFiscalViewSet)
 router.register(r'estadoServicios', views.EstadoServicioViewSet)
 router.register(r'gestionServicios', views.GestionServicioViewSet)
 router.register(r'detalleServicio', views.DetalleServicioViewSet)
+router.register(r'blogContable', views.BlogContableViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

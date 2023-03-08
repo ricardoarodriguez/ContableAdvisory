@@ -41,3 +41,8 @@ class DetalleServicioSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Detalle_Servicio
         fields = [ 'url','id','id_cliente', 'id_servicio','created_at','estado' ]
+
+class BlogContableSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Blog_Contable
+        fields = [ 'url', 'id', 'title', 'subtitle','content','created_at','update_at']

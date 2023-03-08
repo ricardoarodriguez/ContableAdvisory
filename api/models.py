@@ -109,3 +109,10 @@ class Detalle_Servicio(models.Model):
     id_servicio = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     estado = models.BooleanField(default=True)
+
+class Blog_Contable(models.Model):
+    title = models.CharField(max_length=255, null=True)
+    subtitle = models.CharField(max_length=255, null=True)
+    content = models.CharField(max_length=65536, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
