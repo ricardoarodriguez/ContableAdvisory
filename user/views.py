@@ -5,7 +5,10 @@ from rest_framework.views import APIView
 from .serializers import CustomUserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
-
+from rest_framework_simplejwt.backends import TokenBackend
+from rest_framework import viewsets
+from .models import *
+from .serializers import *
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
@@ -34,3 +37,18 @@ class BlacklistTokenUpdateView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = NewUser.objects.all()
+    print(queryset)
+    serializer_class = CustomUserSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, pk):
+        try:
+            queryset = NewUser.objects.filter(pk=pk)
+            return queryset
+        except NewUser.DoesNotExist:
+            raise Http404
+
