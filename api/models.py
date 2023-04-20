@@ -19,7 +19,7 @@ class Cliente(models.Model):
 class Tipo_tramite (models.Model):    
     tipo_tramite = models.CharField(max_length=200,null=True,blank=True)
     id_padre = models.IntegerField(null=True)
-    nombre_padre = models.CharField(max_length=50,null=True,blank=True)
+    nombre_padre = models.CharField(max_length=50,blank=True, default='')
     is_process = models.BooleanField(default=False)
     created_by = models.CharField(max_length=50,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
