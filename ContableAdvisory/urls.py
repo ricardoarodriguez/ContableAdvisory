@@ -17,10 +17,12 @@ router.register(r'cliente', views.ClienteViewSet)
 router.register(r'ciiu', views.CIIUViewSet)
 router.register(r'tributos', views.TributosViewSet)
 router.register(r'responsabilidad', views.ResponsabilidadFiscalViewSet)
-router.register(r'estadoServicios', views.EstadoServicioViewSet)
+router.register(r'estadoTramite', views.EstadoTramiteViewSet)
 router.register(r'gestionServicios', views.GestionServicioViewSet)
-router.register(r'detalleServicio', views.DetalleServicioViewSet)
+router.register(r'detalleTramite', views.DetalleTramiteViewSet)
 router.register(r'blogContable', views.BlogContableViewSet)
+router.register(r'tipoTramite', views.TipoTramiteViewSet)
+router.register(r'tramite', views.TramiteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

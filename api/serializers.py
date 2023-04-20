@@ -22,11 +22,6 @@ class ResponsabilidadFiscalSerializer(serializers.HyperlinkedModelSerializer):
         model = Responsabilidad_Fiscal
         fields = [ 'url','id','nombre','created_at','estado' ]
 
-class EstadoServicioSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Estado_Servicio
-        fields = [ 'url','id','nombre','created_at','estado' ]
-
 class ServicioSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Servicio
@@ -37,12 +32,27 @@ class GestionServicioSerializer(serializers.HyperlinkedModelSerializer):
         model = Gestion_Servicio
         fields = [ 'url','id','observacion', 'id_servicio','id_estado_servicio','created_at','estado' ]
 
-class DetalleServicioSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Detalle_Servicio
-        fields = [ 'url','id','id_cliente', 'id_servicio','created_at','estado' ]
-
 class BlogContableSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Blog_Contable
         fields = [ 'url', 'id', 'title', 'subtitle','content','created_at','update_at']
+
+class TipoTramiteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Tipo_tramite
+        fields = [ 'url', 'id', 'tipo_tramite', 'id_padre','nombre_padre','is_process','created_by','created_at','update_at','is_active']
+
+class TramiteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Tramite
+        fields = [ 'url', 'id', 'id_tipo_tramite', 'tipo_tramite', 'id_proceso','proceso','attached_file_path','created_by','created_at','id_estado','estado','is_active']
+
+class DetalleTramiteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Detalle_Tramite
+        fields = [ 'url', 'id', 'id_tramite', 'observaciones', 'id_servicio', 'attached_file_path','created_by','created_at','id_estado','estado','is_active']
+
+class EstadoTramiteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Estado_Tramite
+        fields = [ 'url', 'id', 'nombre', 'created_by','created_at','is_active']

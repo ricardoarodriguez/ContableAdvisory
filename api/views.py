@@ -138,37 +138,37 @@ class ResponsabilidadFiscalViewSet(viewsets.ModelViewSet):
         responsabilidad.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
-class EstadoServicioViewSet(viewsets.ModelViewSet):
-    queryset = Estado_Servicio.objects.all()
-    serializer_class = EstadoServicioSerializer
+class EstadoTramiteViewSet(viewsets.ModelViewSet):
+    queryset = Estado_Tramite.objects.all()
+    serializer_class = EstadoTramiteSerializer
 
     def get(self, pk):
         try:
-            queryset = Estado_Servicio.objects.filter(pk=pk)
+            queryset = Estado_Tramite.objects.filter(pk=pk)
             return queryset
-        except Estado_Servicio.DoesNotExist:
+        except Estado_Tramite.DoesNotExist:
             raise Http404
 
     def post(self, request, pk, format=None):
-        estadoServicio = EstadoServicioSerializer(data=request.data)
-        if estadoServicio.is_valid():
-            estadoServicio.save()
-            return Response(estadoServicio.data)
+        estadoTramite = EstadoTramiteSerializer(data=request.data)
+        if estadoTramite.is_valid():
+            estadoTramite.save()
+            return Response(estadoTramite.data)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
     
     def put(self, request, pk, format=None):
-        estadoServicio = self.get(pk)
-        serializer = EstadoServicioSerializer(data=request.data)
-        if estadoServicio.is_valid():
-            estadoServicio.save()
-            return Response(estadoServicio.data)
+        estadoTramite = self.get(pk)
+        serializer = EstadoTramiteSerializer(data=request.data)
+        if estadoTramite.is_valid():
+            estadoTramite.save()
+            return Response(estadoTramite.data)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, pk, format=None):
-        estadoServicio = Estado_Servicio.objects.filter(pk=pk)
-        estadoServicio.delete()
+        estadoTramite = Estado_Tramite.objects.filter(pk=pk)
+        estadoTramite.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
 class GestionServicioViewSet(viewsets.ModelViewSet):
@@ -204,19 +204,19 @@ class GestionServicioViewSet(viewsets.ModelViewSet):
         gestion.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
-class DetalleServicioViewSet(viewsets.ModelViewSet):
-    queryset = Detalle_Servicio.objects.all()
-    serializer_class = DetalleServicioSerializer
+class DetalleTramiteViewSet(viewsets.ModelViewSet):
+    queryset = Detalle_Tramite.objects.all()
+    serializer_class = DetalleTramiteSerializer
 
     def get(self, pk):
         try:
-            queryset = Detalle_Servicio.objects.filter(pk=pk)
+            queryset = Detalle_Tramite.objects.filter(pk=pk)
             return queryset
-        except Detalle_Servicio.DoesNotExist:
+        except Detalle_Tramite.DoesNotExist:
             raise Http404
 
     def post(self, request, pk, format=None):
-        detalle = DetalleServicioSerializer(data=request.data)
+        detalle = DetalleTramiteSerializer(data=request.data)
         if detalle.is_valid():
             detalle.save()
             return Response(detalle.data)
@@ -225,7 +225,7 @@ class DetalleServicioViewSet(viewsets.ModelViewSet):
     
     def put(self, request, pk, format=None):
         detalle = self.get(pk)
-        serializer = DetalleServicioSerializer(data=request.data)
+        serializer = DetalleTramiteSerializer(data=request.data)
         if detalle.is_valid():
             detalle.save()
             return Response(detalle.data)
@@ -233,7 +233,7 @@ class DetalleServicioViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, pk, format=None):
-        detalle = Detalle_Servicio.objects.filter(pk=pk)
+        detalle = Detalle_Tramite.objects.filter(pk=pk)
         detalle.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
@@ -269,4 +269,72 @@ class BlogContableViewSet(viewsets.ModelViewSet):
     def delete(self, request, pk, format=None):
         blogContable = Blog_Contable.objects.filter(pk=pk)
         blogContable.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT) 
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class TipoTramiteViewSet(viewsets.ModelViewSet):
+    queryset = Tipo_tramite.objects.all()
+    serializer_class = TipoTramiteSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, pk):
+        try:
+            queryset = Tipo_tramite.objects.filter(pk=pk)
+            return queryset
+        except Tipo_tramite.DoesNotExist:
+            raise Http404
+
+    def post(self, request, pk, format=None):
+        tipoTramite = TipoTramiteSerializer(data=request.data)
+        if tipoTramite.is_valid():
+            tipoTramite.save()
+            return Response(tipoTramite.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk, format=None):
+        tipoTramite = self.get(pk)
+        serializer = TipoTramiteSerializer(data=request.data)
+        if tipoTramite.is_valid():
+            tipoTramite.save()
+            return Response(tipoTramite.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk, format=None):
+        tipoTramite = Tipo_tramite.objects.filter(pk=pk)
+        tipoTramite.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)  
+
+class TramiteViewSet(viewsets.ModelViewSet):
+    queryset = Tramite.objects.all()
+    serializer_class = TramiteSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, pk):
+        try:
+            queryset = Tramite.objects.filter(pk=pk)
+            return queryset
+        except Tramite.DoesNotExist:
+            raise Http404
+
+    def post(self, request, pk, format=None):
+        tramite = TramiteSerializer(data=request.data)
+        if tramite.is_valid():
+            tramite.save()
+            return Response(tramite.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk, format=None):
+        tramite = self.get(pk)
+        serializer = TramiteSerializer(data=request.data)
+        if tramite.is_valid():
+            tramite.save()
+            return Response(tramite.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk, format=None):
+        tramite = Tramite.objects.filter(pk=pk)
+        tramite.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)  

@@ -17,17 +17,20 @@ class Cliente(models.Model):
     describe = models.CharField(max_length=255, null=True)
 
 class Tipo_tramite (models.Model):    
-    descripcion_tipo = models.CharField(max_length=200,null=True,blank=True)
-    nombre_tipo = models.CharField(max_length=50)
+    tipo_tramite = models.CharField(max_length=200,null=True,blank=True)
+    id_padre = models.IntegerField(null=True)
+    nombre_padre = models.CharField(max_length=50,null=True,blank=True)
+    is_process = models.BooleanField(default=False)
+    created_by = models.CharField(max_length=50,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
-
 
 class Post(models.Model):
 
@@ -60,16 +63,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class Persona(models.Model):
-    documento = models.IntegerField()
-    tipo_documento = models.CharField(max_length=20, null=True)
-    nombre = models.CharField(max_length=200, verbose_name="Nombre del Persona")
-    genero = models.CharField(max_length=10, null=True)
-    email = models.CharField(max_length=200, null=True)
-    acceptance_tm = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
-
 class CIIU(models.Model):
     codigo = models.IntegerField()
     nombre = models.CharField(max_length=200, null=True)
@@ -87,11 +80,6 @@ class Responsabilidad_Fiscal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     estado = models.BooleanField(default=True)
 
-class Estado_Servicio(models.Model):
-    nombre = models.CharField(max_length=200, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    estado = models.BooleanField(default=True)
-
 class Servicio(models.Model):
     nombre = models.CharField(max_length=200, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -104,15 +92,38 @@ class Gestion_Servicio(models.Model):
     estado = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class Detalle_Servicio(models.Model):
-    id_cliente = models.IntegerField()
-    id_servicio = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    estado = models.BooleanField(default=True)
-
 class Blog_Contable(models.Model):
     title = models.CharField(max_length=255, null=True)
     subtitle = models.CharField(max_length=255, null=True)
     content = models.CharField(max_length=65536, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+
+class Estado_Tramite(models.Model):
+    nombre = models.CharField(max_length=200, null=True)
+    created_by = models.CharField(max_length=150, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+class Tramite(models.Model):
+    id_tipo_tramite = models.IntegerField(null=True)
+    tipo_tramite = models.CharField(max_length=100, null=True)
+    id_proceso = models.IntegerField(null=True)    
+    proceso = models.CharField(max_length=100, null=True)
+    attached_file_path = models.CharField(max_length=150, null=True)
+    created_by = models.CharField(max_length=150, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    id_estado = models.IntegerField(null=True)
+    estado = models.CharField(max_length=50, null=True)
+    is_active = models.BooleanField(default=True)
+
+class Detalle_Tramite(models.Model):
+    id_tramite = models.IntegerField(null=True)
+    observaciones = models.CharField(max_length=2000, null=True)
+    id_servicio = models.IntegerField(null=True)
+    created_by = models.CharField(max_length=150, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    attached_file_path = models.CharField(max_length=150, null=True)
+    id_estado = models.IntegerField(null=True)
+    estado = models.CharField(max_length=100, null=True)
+    is_active = models.BooleanField(default=True)
