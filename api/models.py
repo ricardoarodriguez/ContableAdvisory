@@ -120,7 +120,7 @@ class Tramite(models.Model):
 class Detalle_Tramite(models.Model):
     id_tramite = models.IntegerField(null=True)
     observaciones = models.CharField(max_length=2000, null=True)
-    id_servicio = models.IntegerField(null=True)
+    id_proceso = models.IntegerField(null=True)
     created_by = models.CharField(max_length=150, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     attached_file_path = models.CharField(max_length=150, null=True)
