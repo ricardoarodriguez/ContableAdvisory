@@ -50,7 +50,7 @@ class TramiteSerializer(serializers.HyperlinkedModelSerializer):
 class DetalleTramiteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Detalle_Tramite
-        fields = [ 'url', 'id', 'id_tramite', 'observaciones', 'id_servicio', 'attached_file_path','created_by','created_at','id_estado','estado','is_active']
+        fields = [ 'url', 'id', 'id_tramite', 'observaciones', 'id_proceso', 'attached_file_path','created_by','created_at','id_estado','estado','is_active']
 
 class EstadoTramiteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
