@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameField(
-            model_name='detalle_tramite',
+            model_name='Detalle_Tramite',
             old_name='id_servicio',
             new_name='id_proceso',
         ),
