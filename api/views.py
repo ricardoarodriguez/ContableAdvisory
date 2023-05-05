@@ -1,7 +1,10 @@
+from  django_filters.rest_framework import DjangoFilterBackend 
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
@@ -205,14 +208,18 @@ class GestionServicioViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT) 
 
 class DetalleTramiteViewSet(viewsets.ModelViewSet):
-    queryset = Detalle_Tramite.objects.all()
+    queryset = Detalle_Tramite.objects.filter()
     serializer_class = DetalleTramiteSerializer
+    #filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_backends = [DjangoFilterBackend]
+    search_fields = ('created_by')
+    filterset_fields =['created_by','id_tramite'] 
 
     def get(self, pk):
         try:
-            queryset = Detalle_Tramite.objects.filter(pk=pk)
+            queryset = Tramite.objects.filter(pk=pk)
             return queryset
-        except Detalle_Tramite.DoesNotExist:
+        except Tramite.DoesNotExist:
             raise Http404
 
     def post(self, request, pk, format=None):
@@ -308,6 +315,9 @@ class TipoTramiteViewSet(viewsets.ModelViewSet):
 class TramiteViewSet(viewsets.ModelViewSet):
     queryset = Tramite.objects.all()
     serializer_class = TramiteSerializer
+    #filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields =['created_by'] 
     #permission_classes = [permissions.IsAuthenticated]
     
     def get(self, pk):
